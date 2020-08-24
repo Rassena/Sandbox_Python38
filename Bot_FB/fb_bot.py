@@ -3,10 +3,6 @@ import fbchat
 from fbchat import log, Client
 from fbchat.models import *
 
-#usr=input('Enter Email ID: ')
-#pwd=getpass('Enter Password: ')
-
-
 song_lyric = open("shooting_star.txt", "r")
 song_lyric.read(1)
 
@@ -29,6 +25,9 @@ def just_login(username, passw):
 
 
 def check_info():
+    usr = input('Enter Email ID: ')
+    pwd = getpass('Enter Password: ')
+
     client = fbchat.Client(usr, pwd)
     """
     users = client.searchForUsers(input('Name to search: '))
@@ -45,8 +44,8 @@ def check_info():
     for x in range(len(client.getEmails())):
         print('{}'.format(client.getEmails()[x]))
 
-    #client.send(Message('to jest test bota, zignoruj to'), user.uid)
-    #client.send(Message('Hi Me!'), client.uid)
+    # client.send(Message('to jest test bota, zignoruj to'), user.uid)
+    # client.send(Message('Hi Me!'), client.uid)
 
 
 class Echobot(Client):
@@ -78,13 +77,11 @@ class Song_odd(Client):
     def onMessage(self, author_id, message_object, thread_id, **kwargs):
         self.markAsDelivered(thread_id, message_object.uid)
         self.markAsRead(thread_id)
-        song = shooting_star.split('\n')
         log.info('{} from in {}'.format(message_object, thread_id, ))
 
         if author_id != self.uid:
-            self.send(Message(song[Song_odd.i]), thread_id=thread_id, )
-            Song_odd.i += 2
-            if Song_odd.i >= len(song):
+            self.send(Message(song_lyric.readline()), thread_id=thread_id, )
+            if song_lyric.readline() == "":
                 Client.logout()
 
 
@@ -94,26 +91,24 @@ class Song_even(Client):
     def onMessage(self, author_id, message_object, thread_id, **kwargs):
         self.markAsDelivered(thread_id, message_object.uid)
         self.markAsRead(thread_id)
-        song = shooting_star.split('\n')
         log.info('{} from in {}'.format(message_object, thread_id, ))
 
         if author_id != self.uid:
-            self.send(Message(song[Song_even.i]), thread_id=thread_id, )
-            Song_even.i += 2
-            if Song_even.i >= len(song):
+            self.send(Message(song_lyric.readline()), thread_id=thread_id, )
+            if song_lyric.readline() == "":
                 Client.logout()
 
 
 # send_mesange_fbchat()
 # just_login()
 
-#client = Dissbot(login, password)
+# client = Dissbot(login, password)
 
-#client = Song_even(login,password)
-#client2 = Song_odd(login2,password2)
+# client = Song_even(login,password)
+# client2 = Song_odd(login2,password2)
 
-#client.listen()
-#client2.listen()
-#check_info()
+# client.listen()
+# client2.listen()
+# check_info()
 for line in song_lyric:
     print(line)
