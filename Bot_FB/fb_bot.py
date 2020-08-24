@@ -3,58 +3,12 @@ import fbchat
 from fbchat import log, Client
 from fbchat.models import *
 
-usr=input('Enter Email ID: ')
-pwd=getpass('Enter Password: ')
+#usr=input('Enter Email ID: ')
+#pwd=getpass('Enter Password: ')
 
 
-shooting_star = """It's late and I'm awake
-Staring at the wall
-Open up my window
-Head falls out the door
-No one else around
-And a shimmer takes my eye
-I lift my head
-Blinded by the sky
-Feel my weight in front
-Following the sound
-Moves away so fast
-Falling to the ground
-I know what is more to come
-Jump back to my feet
-Now I only see ahead of me
-Chasing down the street (down the street, down the street, down the street)
-Give my love to a shooting star
-But she moves so fast
-That I can't keep up
-I'm chasing
-I'm in love with a shooting star
-But she moves so fast
-When she falls then
-I'll be waiting
-Give my love to a shooting star
-But she moves so fast
-That I can't keep up
-I'm chasing
-I'm in love with a shooting star
-But she moves so fast
-When she falls then
-I'll be waiting
-Give my love to a shooting star
-But she moves so fast
-That I can't keep up
-I'm chasing
-I'm in love with a shooting star
-But she moves so fast
-When she falls then
-I'll be waiting
-Give my love to a shooting star
-But she moves so fast
-That I can't keep up
-I'm chasing
-I'm in love with a shooting star
-But she moves so fast
-When she falls then
-I'll be waiting"""
+song_lyric = open("shooting_star.txt", "r")
+song_lyric.read(1)
 
 
 def send_mesange_fbchat():
@@ -160,4 +114,6 @@ class Song_even(Client):
 
 #client.listen()
 #client2.listen()
-check_info()
+#check_info()
+for line in song_lyric:
+    print(line)
