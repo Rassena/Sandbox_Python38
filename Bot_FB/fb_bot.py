@@ -124,7 +124,8 @@ class I_went_sleep(Client):
 # for line in song_lyric:
 #    print(line)
 
-client = login()
-client = I_went_sleep(client)
+usr = input('Enter Email ID: ')
+pwd = getpass('Enter Password: ')
+client = I_went_sleep(usr, pwd)
 client.listen()
 
