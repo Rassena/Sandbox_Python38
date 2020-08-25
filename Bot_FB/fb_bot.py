@@ -102,12 +102,15 @@ class Song_even(Client):
 class I_went_sleep(Client):
 
     def onMessage(self, author_id, message_object, thread_id, **kwargs):
+        listofauthors = [self.uid]
         self.markAsDelivered(thread_id, message_object.uid)
         self.markAsRead(thread_id)
         log.info('{} from in {}'.format(message_object, thread_id, ))
 
         if author_id != self.uid:
-            self.send(Message(message), thread_id=thread_id, )
+            if author_id not in listofauthors:
+                self.send(Message(message), thread_id=thread_id, )
+                listofauthors.append(author_id)
 
 
 # send_mesange_fbchat()
