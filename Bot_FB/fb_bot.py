@@ -4,7 +4,8 @@ from fbchat import log, Client
 from fbchat.models import *
 
 song_lyric = open("shooting_star.txt", "r")
-song_lyric.read(1)
+
+message = 'Poszedłem spać. Prawdopodbnie wstanę około 17. ~Bocik 0.07v'
 
 
 def send_mesange_fbchat():
@@ -20,15 +21,14 @@ def send_mesange_fbchat():
             print('Message sent successfully!')
 
 
-def just_login(username, passw):
-    client = fbchat.Client(username, passw)
-
-
-def check_info():
+def login():
     usr = input('Enter Email ID: ')
     pwd = getpass('Enter Password: ')
-
     client = fbchat.Client(usr, pwd)
+    return client
+
+def check_info(client):
+
     """
     users = client.searchForUsers(input('Name to search: '))
     user = users[0]
@@ -99,8 +99,19 @@ class Song_even(Client):
                 Client.logout()
 
 
+class I_went_sleep(Client):
+
+    def onMessage(self, author_id, message_object, thread_id, **kwargs):
+        self.markAsDelivered(thread_id, message_object.uid)
+        self.markAsRead(thread_id)
+        log.info('{} from in {}'.format(message_object, thread_id, ))
+
+        if author_id != self.uid:
+            self.send(Message(message), thread_id=thread_id, )
+
+
 # send_mesange_fbchat()
-# just_login()
+# login()
 
 # client = Dissbot(login, password)
 
@@ -110,5 +121,10 @@ class Song_even(Client):
 # client.listen()
 # client2.listen()
 # check_info()
-for line in song_lyric:
-    print(line)
+# for line in song_lyric:
+#    print(line)
+
+client = login()
+client = I_went_sleep(client)
+client.listen()
+
