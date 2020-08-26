@@ -102,7 +102,6 @@ class Song_even(Client):
 class I_went_sleep(Client):
 
     def onMessage(self, author_id, message_object, thread_id, **kwargs):
-        listofauthors = [self.uid]
         self.markAsDelivered(thread_id, message_object.uid)
         self.markAsRead(thread_id)
         log.info('{} from in {}'.format(message_object, thread_id, ))
@@ -126,9 +125,21 @@ class I_went_sleep(Client):
 # check_info()
 # for line in song_lyric:
 #    print(line)
+listofauthors = []
 
 usr = input('Enter Email ID: ')
 pwd = getpass('Enter Password: ')
 client = I_went_sleep(usr, pwd)
 client.listen()
+
+
+
+
+
+
+
+
+
+
+
 
