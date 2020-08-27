@@ -14,7 +14,7 @@ def went_sleep(hour_when_wake_up):
 
 def unique_message():
     print("Write your message here: ",end='')
-    message = input()
+    message = input() + signature
     return message
 
 
