@@ -12,7 +12,13 @@ def went_sleep(hour_when_wake_up):
             return message
     went_sleep(input())
 
+def unique_message():
+    print("Write your message here: ",end='')
+    message = input()
+    return message
+
 
 print('hour when you wake up: ', end='')
 text = went_sleep((input()))
 print(text)
+print(unique_message())
