@@ -2,11 +2,10 @@ from getpass import getpass
 import fbchat
 from fbchat import log, Client
 from fbchat.models import *
+import Bot_FB.messages as messages
 
 song_lyric = open("shooting_star.txt", "r")
-
-message = 'Poszedłem spać. Prawdopodbnie wstanę około 17. ~Bocik 0.07v'
-
+message = ''
 
 def send_mesange_fbchat():
     client = fbchat.Client(str(input('Email: ')), getpass())
@@ -99,7 +98,10 @@ class Song_even(Client):
                 Client.logout()
 
 
+
 class I_went_sleep(Client):
+    print('Write hour when you wake up: ', end='')
+    message = messages.went_sleep(input())
 
     def onMessage(self, author_id, message_object, thread_id, **kwargs):
         self.markAsDelivered(thread_id, message_object.uid)
