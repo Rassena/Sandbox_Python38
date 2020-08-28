@@ -10,7 +10,7 @@ def went_sleep(hour_when_wake_up):
         else:
             message = 'Poszedłem spać. Prawdopodbnie wstanę około ' + hour_when_wake_up + signature
             return message
-    return went_sleep(input())
+    went_sleep(input())
 
 def unique_message():
     print("Write your message here: ",end='')
